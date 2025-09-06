@@ -4,42 +4,36 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
   {
-    title: '🧠 BrainWave RAG Assistant 🚀 Top Project',
+    title: '🧠 BrainWave RAG Assistant',
     description:
-      'An AI assistant that supports document/code upload and gives smart answers using RAG (LangChain, FAISS, Streamlit, OpenAI).',
+      'AI assistant with document/code upload, powered by LangChain, FAISS, Streamlit, and OpenAI.',
     tech: ['Streamlit', 'LangChain', 'FAISS', 'OpenAI'],
     demo: 'https://brainwaverag.streamlit.app/',
-    github: 'https://github.com/Manishkumarsingh41/brainwave-rag-app', // Replace with your actual repo URL if public
+    github: 'https://github.com/Manishkumarsingh41/brainwave-rag-app',
+  },
+  {
+    title: '📊 StockLensAi',
+    description:
+      'Curated top 100 international stocks with FinBERT sentiment analysis and Prophet stock price forecasting.',
+    tech: ['Python', 'FinBERT', 'Prophet', 'NLP', 'Time Series'],
+    github: 'https://github.com/Manishkumarsingh41/StockLensAi',
     isFeatured: true,
   },
   {
     title: 'AI Caption & Hashtag Generator',
     description:
-      'Developed an AI-powered tool to generate image captions and trending hashtags using deep learning and NLP techniques.',
+      'Generates smart captions and trending hashtags using deep learning and NLP.',
     tech: ['Python', 'OpenCV', 'TensorFlow', 'PyTorch'],
     github: 'https://github.com/Manishkumarsingh41/aicaption-hastagtool',
   },
   {
-    title: 'Rule-Based Chatbot Response System',
-    description:
-      'Created a chatbot that responds to user queries based on predefined rules and keyword recognition.',
-    tech: ['Python', 'Flask', 'NLP'],
-  },
-  {
-    title: 'Face Detection System',
-    description:
-      'Implemented a real-time face detection system that accurately detects and recognizes faces in images and live video feeds.',
-    tech: ['Python', 'OpenCV', 'Haar Cascade Classifiers', 'XML'],
-  },
-  {
     title: 'Sentiment Analysis Bot',
     description:
-      "Built a sentiment analysis system capable of classifying text as positive, negative, or neutral using Hugging Face's Transformer models.",
+      'Classifies text as positive, negative, or neutral using Hugging Face Transformers.',
     tech: ['Python', 'Hugging Face', 'NLP'],
     demo: 'https://iamanishsinghrajput-meggi.hf.space',
   },
 ];
-
 
 export const Projects = () => {
   const [ref, inView] = useInView({
@@ -65,15 +59,9 @@ export const Projects = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => {
-            // Extract badge and clean title for featured projects
             let badge = null;
-            let cleanTitle = project.title;
             if (project.isFeatured) {
-              const badgeMatch = project.title.match(/(🚀 Top Project)/);
-              if (badgeMatch) {
-                badge = badgeMatch[1];
-                cleanTitle = project.title.replace(/\s*🚀 Top Project/, '').trim();
-              }
+              badge = '🚀 Top Project';
             }
             return (
               <motion.div
@@ -87,10 +75,17 @@ export const Projects = () => {
                     : 'bg-white dark:bg-gray-900'
                 }`}
               >
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover"
+                  />
+                )}
                 <div className="p-6">
                   <div className="flex items-center mb-2 gap-2">
-                    <h3 className="text-xl font-semibold">{cleanTitle}</h3>
-                    {project.isFeatured && badge && (
+                    <h3 className="text-xl font-semibold">{project.title}</h3>
+                    {badge && (
                       <span className="px-2 py-0.5 bg-yellow-300 dark:bg-yellow-700 text-yellow-900 dark:text-yellow-100 rounded-full text-xs font-semibold">
                         {badge}
                       </span>
